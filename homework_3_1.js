@@ -1,7 +1,26 @@
-list = [12,83,34,6,67,67,99];
 
-console.log(list);
+n = +prompt();
 
-for(i = 0;i < list.length; i = i+1){
-  console.log(i,list[i])
+A = new Array (n);
+
+for (i = 0; i < A.length; i++){
+A[i] = Math.floor(Math.random()*20);
 }
+
+console.log(A);
+
+
+B = new Array (n);
+
+for (i = 0; i < B.length; i++){
+B[i] = Math.floor(Math.random()*20);
+}
+
+console.log(B);
+
+var duplicates = A.filter(function(val) {
+  return B.indexOf(val) != -1;
+});
+
+console.log(duplicates);
+
