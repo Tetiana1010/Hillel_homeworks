@@ -1,5 +1,5 @@
 
-n = +prompt();
+n = 13;
 
 A = new Array (n);
 
