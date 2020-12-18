@@ -8,7 +8,8 @@ function fillArray(A, len){
 
   for (var i = 0; i < A.length; i++){
     A[i] = Math.floor(Math.random()*10)
-  } return A;
+  }
+   return A;
 }
 
 arr = [];
