@@ -1,17 +1,18 @@
 
 n = 50; 
-m = n; 
 
-centerN = Math.floor(n/2)
-centerM = Math.floor(m/2)
+center = Math.floor(n/2)
 
 
-for(i = 0; i <= n; i++){
-  for(j = 0; j <= m; j++){
-    if( i > j|| i + j < n + 1 && i <= centerN && j >= centerM ){
-      document.write(1)
-    } else
-    document.write(0)
+for(i = 0; i < n; i++){
+  for(j = 0; j < n; j++){
+    if ((i + j >= n) || (j >= i && j < center)) {
+      document.write(0);
+    } else {
+      document.write(1);
+    }
   }
-  document.write('<br />')
+  document.write('<br />');
 }
+
+
