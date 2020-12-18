@@ -4,12 +4,15 @@
 
 
 function fillArray(A, len){
-  for( var i = 0; i = A.length; i++ ){
-
-  }
+  while(A.length < len){
+    A.push(Math.floor(Math.random()*10));
+  } 
+  while(A.length > len){
+    A.pop();
+  } 
+  return A;
 }
 
+A = [5,7,7,8,9,40];
 
-A = [4,7,8,9]
-
-fillArray(A);
+console.log(fillArray(A, 20));
