@@ -1,24 +1,22 @@
+/* Создать функцию, которая исключает из строки все символы, 
+которые мы передали вторым аргументом.
+'func("hello world", ['l', 'd'])' вернет нам "heo wor" */
 
-z = 5;
+function func (str, restrictedList){
 
+  for(i = 0; i <= restrictedList.length-1; i++ ) {
+    str = str.split(restrictedList[i]).join('')
+  } 
 
-function scope_1 (a, b){
-  var x1 = 'x1';
-  var x2 = 'x2';
+  /* for(let i in restrictedList) {
+    str = str.split(restrictedList[i]).join('')
+  } */
 
-  /*
-
-    scope_1.lexicalEnvironment = {
-      a: 'hello',
-      b: 'world',
-      x1: 'x1',
-      x2: 'x2',
-    }
-
-  */
-
-  console.log(a, b, x1, x1, z);
-  return a+b+x1+x2;
+  /* for (let char of restrictedList) {
+    str = str.split(char).join('')
+  } */
+  
+  return str;
 }
 
-scope_1 ('hello', 'world')
+console.log(func("hello world", ['l', 'd']));
