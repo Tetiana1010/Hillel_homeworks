@@ -54,7 +54,7 @@ function f(source1,source2){
 } 
 
 
-const array1 = [7,8,8,9];
+const array1 = [7,8,'234',8,9];
 const array2 = [7,8,8,0,7,3,8,6];
 
 console.log(f(array1, array2));
