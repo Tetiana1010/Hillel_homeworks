@@ -2,7 +2,7 @@
     Функция должна вернуть максимумы всех переданных массивов в виде строки,
     через разделитель `,` */
 
-function getMax(args){
+function getMaxOne(args){
   if(!Array.isArray(args)){
     return console.error('Not array');
   }
@@ -14,13 +14,13 @@ function getMax(args){
     }
   }
   return maxValue;
-}
+};
 
 function getMaxs(allArrays){
   let maxs = [];
 
   for(let i = 0; i < allArrays.length; i++){
-    maxs.push(getMax(allArrays[i]));
+    maxs.push(getMaxOne(allArrays[i]));
   }
   return maxs.join(',')
 }
@@ -29,6 +29,6 @@ arr1 = [5,8,8,9,10];
 arr2 = [7,9,10,20];
 arr3 = [7,8,9,2];
 
-let Arrays = [arr1, arr2, arr3];
+let maxValues = [arr1, arr2, arr3];
 
-console.log(getMaxs(Arrays));
+console.log(getMaxs(maxValues));
