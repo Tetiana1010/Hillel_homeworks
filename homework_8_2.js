@@ -16,12 +16,13 @@ function assignObjects(obj1, obj2){
 
 x = {
   a: 1,
-  b: 2
+  b: 2,
 }
   
 y = {
   b: 5,
-  c: 8
+  c: 8,
+  h: 9
 }
 
 console.log(assignObjects(x,y));
