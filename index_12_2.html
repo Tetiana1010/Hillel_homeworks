@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src= "./homework_12_2.js"></script>
+  <style>
+    html, body {
+      height: 100%;
+    }
+    .diagram {
+      height: 150px;
+      width: 50px;
+      border: 2px solid black;
+      display: flex;
+      flex-direction: column-reverse;
+    }
+    .red {
+      background-color: red;
+      width: 100%
+    }
+    .green {
+      background-color: green;
+      width: 100%
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <input class="calculator-range" type="range" min="0" max="100" value="0" step="1">
+  </div>   
+  <div>
+    <input class="calculator-number" type="number"min="0" max="100" value="0" step="1">
+  </div> 
+  <div class="diagram">
+    <div class="green"></div>
+    <div class="red"></div>
+  </div>
+</body>
+</html>

@@ -4,7 +4,7 @@ n = 13;
 A = new Array (n);
 
 for (i = 0; i < A.length; i++){
-A[i] = Math.floor(Math.random()*20);
+A[i] = Math.floor(Math.random()*40-20);
 }
 
 console.log(A);
