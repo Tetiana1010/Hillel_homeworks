@@ -23,6 +23,31 @@ window.addEventListener('load', function(){
     let stepsVertical = 0;
 
     function arrows (event){
+      // Right wall
+      if (block.offsetLeft + block.offsetWidth >= window.innerWidth) {
+        block.style.left = window.innerWidth - block.offsetWidth - 1  + 'px';
+        return false;
+      } 
+
+      // Left wall
+      if (block.offsetLeft <= 0) {
+        block.style.left = 1 + 'px';
+        return false;
+      }
+
+      // Bottom wall
+      if (block.offsetTop + block.offsetHeight >= window.innerHeight) {
+        block.style.top = window.innerHeight - block.offsetHeight - 1  + 'px';
+        return false;
+      }
+
+      // Top wall
+      if (block.offsetTop <= 0) {
+        block.style.top = 1 + 'px';
+        return false;
+      }
+
+    
       if(event.keyCode == 37){
         stepsHorizontal--;
         block.style.left = stepsHorizontal * 50 + 'px';
@@ -39,40 +64,8 @@ window.addEventListener('load', function(){
         stepsVertical++;
         block.style.top = stepsVertical * 50 + 'px';
       }
-      if(!isBlockInWindow()){
-        return;
-      }
     }
     document.addEventListener('keydown', arrows)
-     
 
-    function isBlockInWindow() {
 
-      // Right wall
-      if (block.offsetLeft + block.offsetWidth >= window.innerWidth) {
-          block.style.left = window.innerWidth - block.offsetWidth - 1  + 'px';
-          return false;
-      }
-
-       // Left wall
-      if (block.offsetLeft <= 0) {
-          block.style.left = 1 + 'px';
-          return false;
-      }
-
-      // Bottom wall
-      if (block.offsetTop + block.offsetHeight >= window.innerHeight) {
-          block.style.top = window.innerHeight - block.offsetHeight - 1  + 'px';
-          return false;
-      }
-
-      // Top wall
-      if (block.offsetTop <= 0) {
-          block.style.top = 1 + 'px';
-          return false;
-      }
-
-      return true;
-  }
-  console.logis(BlockInWindow())
 });
