@@ -13,56 +13,62 @@
 window.addEventListener('load', function(){
 
   const block = document.querySelector('.block')
+  const blockText = document.querySelector('.blockText')
 
     // left arrow	37
     // up arrow	38
     // right arrow	39
     // down arrow	40
+
+    let step = 50;
     
     let stepsHorizontal = 0;
     let stepsVertical = 0;
 
     function arrows (event){
-      // Right wall
-      if (block.offsetLeft + block.offsetWidth >= window.innerWidth) {
-        block.style.left = window.innerWidth - block.offsetWidth - 1  + 'px';
-        return false;
-      } 
-
-      // Left wall
-      if (block.offsetLeft <= 0) {
-        block.style.left = 1 + 'px';
-        return false;
-      }
-
-      // Bottom wall
-      if (block.offsetTop + block.offsetHeight >= window.innerHeight) {
-        block.style.top = window.innerHeight - block.offsetHeight - 1  + 'px';
-        return false;
-      }
-
-      // Top wall
-      if (block.offsetTop <= 0) {
-        block.style.top = 1 + 'px';
-        return false;
-      }
-
     
       if(event.keyCode == 37){
         stepsHorizontal--;
-        block.style.left = stepsHorizontal * 50 + 'px';
+        block.style.left = stepsHorizontal * step + 'px';
       }
       else if(event.keyCode == 39){
         stepsHorizontal++;
-        block.style.left = stepsHorizontal * 50 + 'px';
+        block.style.left = stepsHorizontal * step + 'px';
       }
       else if(event.keyCode == 38){
         stepsVertical--;
-        block.style.top = stepsVertical * 50 + 'px';
+        block.style.top = stepsVertical * step + 'px';
       }
       else if(event.keyCode == 40){
         stepsVertical++;
-        block.style.top = stepsVertical * 50 + 'px';
+        block.style.top = stepsVertical * step+ 'px';
+      }
+
+      function showBams(){
+        blockText.style.display = 'block';
+          setTimeout(function () {
+            blockText.style.display = 'none';
+        }, 2000);
+      }
+
+      if (block.offsetLeft + block.offsetWidth >= window.innerWidth) {
+        block.style.left = window.innerWidth - block.offsetWidth - step*2  + 'px';
+        showBams()
+      } 
+
+      if (block.offsetLeft <= 0) {
+        block.style.left = `${step*2}px`;
+        showBams()
+      }
+
+      if (block.offsetTop + block.offsetHeight >= window.innerHeight) {
+        block.style.top = window.innerHeight - block.offsetHeight - step*2  + 'px';
+        showBams()
+      }
+
+      if (block.offsetTop <= 0) {
+        block.style.top = `${step*2}px`;
+        showBams()
       }
     }
     document.addEventListener('keydown', arrows)
