@@ -16,101 +16,75 @@
   (т.е. ВВЕРХ и ВНИЗ не работают, ПРОБЕЛ не работает)
 */
 
-console.log('homework_11');
+window.addEventListener('load', function(){
+
+  const block = document.querySelector('.block')
+
+    let step = 50; 
+    
+    let stepsHorizontal = 0;
+    let stepsVertical = 0;
+
+    let h = 100;
+
+    let isCrouching = false;
+
+    function arrows (event){
+    
+      if(event.keyCode == 37){
+        stepsHorizontal--;
+        block.style.left = stepsHorizontal * step + 'px';
+      }
+      else if(event.keyCode == 39){
+        stepsHorizontal++;
+        block.style.left = stepsHorizontal * step + 'px';
+      }
+      else if(event.keyCode == 38){
+        if(!isCrouching){
+          stepsVertical++;
+          block.style.bottom = stepsVertical * step + 'px';
+      }
+      }
+      else if(event.keyCode == 40){
+        if(!isCrouching){
+          stepsVertical--;
+          block.style.bottom = stepsVertical * step + 'px';
+        }
+      }
+      else if(event.keyCode == 32){
+        if(!isCrouching){
+          block.style.bottom = parseInt(block.style.bottom) + h + 'px'; 
+          setTimeout(function(){
+            block.style.bottom = parseInt(block.style.bottom) - h + 'px'; 
+          }, 500);
+        }
+      }
+      else if(event.keyCode == 17){
+        isCrouching = true;
+        block.style.height = 60 + 'px'; 
+        block.style.width = 115 + 'px'; 
+      }  
+    } 
+    document.addEventListener('keydown', arrows); 
+});
 
 
-window.onload = function (){
-
-  const block = document.querySelector('.block');
-
-  block.classList.add('active');
-
-  // block.style
-
-  const clickMe = document.querySelector('#click_me');
-  const counterElem = document.querySelector('#click_me_counter');
+    // left arrow	-- 37
+    // up arrow	-- 38
+    // right arrow --	39
+    // down arrow	-- 40
+    // space -- 32
+    // CTRL -- 17
 
 
-  // add event handler -- DOM Level 0
-  // clickMe.onclick = function() {
-  //   console.log('Click me')
-  // }
+    
 
-  // clickMe.onmouseover = function() { // hover
-  //   console.log('on mouse over')
-  // }
+   
 
-  // remuve event handler -- DOM Level 0
-  
-  // clickMe.onclick = null;
-
-  //--------------------------
-  // DOM Level 3 -- новые технологии, использовать только это  
-
-  /* clickMe.addEventListener('click', function() {
-    console.log('Click me')
-  }); 
-
-  clickMe.addEventListener('click', function() {
-    console.log('Click me 2')
-  }); */ // -- норм но тупая запись 
-
-  // нужно так 
-
-  // function onClickMeButton(){
-  //   console.log('Click me 3');
-  // }
-  // clickMe.addEventListener('click', onClickMeButton);
-
-  // ClickMeButton();
-
-  let counter = 0;
-
-
-  function onClickMeButton(){
-    counter++;
-    console.log('Click me 3');
-  // counterElem.innerHTML = counter + (counter == 1 ? ' time' : ' times');
-    counterElem.innerHTML = `
-    <strong>
-     ${counter} ${copy}
-    </strong>
-    `
-
-  }
-  clickMe.addEventListener('click', onClickMeButton);
-
-}
-//------------------------
-// ES6 -- Strings
-
-var str = 'fvghbgvhbjn';
-console.log(str.split(''));
-console.log(str.substr(2,4))
-//---------------
-
-var str1 = ' " '; 
-console.log(str1)  
-//---------------
-
-var str2 = " ' ";
-console.log(str2)
-//---------------
-
-var data = 13;
-
-var str3 = 'monday ' + data; 
-console.log(str3);
-
-//----------------
-
-const nawStrings =  // такие ковычки умеют переносыть строки
-`  sunday 
-  monday
-  ${data} ` 
-
-// data -> String(data) -> '13;
-
-console.log(nawStrings)
-
-
+      // function squat(){
+      //   if(event.keyCode == 17){
+      //     block.style.height = 60 + 'px'; //(-40%) 
+      //     block.style.width = 115 + 'px'; //(+15%)
+      //   }
+      // }
+      // document.addEventListener('keydown', squat);

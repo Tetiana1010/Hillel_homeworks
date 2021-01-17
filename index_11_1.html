@@ -1,31 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <script src= "./homework_11_1.js"></script> 
-  <style>
-    html, body {
-      height: 100%;
-    }
-    .blok {
-      font-size: 40px;
-    }
-
-    .active {
-      color: red;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./homework_11_1.js"></script>
+    <style>
+      .block {
+        width: 100px;
+        height: 100px;
+        border: 2px solid black;
+        position: fixed;
+        left: 100px;
+        bottom: 0;
+      } 
+    </style>
 </head>
 <body>
-  <div class="block">text</div>
-  
-  <hr>
-
-  <button id="click_me">Click me</button>
-
-  <span id="click_me_counter"></span>
-  
+  <div class="block"></div>
 </body>
 </html>
