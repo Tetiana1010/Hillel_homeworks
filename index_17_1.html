@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./homework_17_1.js"></script>
+  <style>
+    .box {
+      position: absolute;
+      display: block;
+      border: 2px solid black;
+    }
+    .menu {
+      display: none;
+      position: absolute;
+      color:black;
+      height: 4.8em;
+      width: 8em;
+      z-index: 10000;
+    }
+
+    #contextMenu1{
+      display: none;
+    }
+
+    .option {
+      display: flex;
+      flex-direction: column;
+      list-style-type: none;
+      margin: 0px;
+      padding: 0px;
+      font-family: 'Helvetica';
+      font-size: 0.7em;
+    }
+
+    li {
+      background-color: rgb(243, 243, 243);
+      border: 1px solid black;
+      padding-left: 1em;
+      list-style-type: none;
+    }
+
+    li:hover {
+      color: gray;
+    }
+  </style>
+</head>
+<body>
+  <div class="menu" id="blockMenu">
+    <ul class="option">
+      <li id="jump">Jump</li>
+      <li id="moveLeft">Move left</li>
+      <li id="moveRight">Move rigth</li>
+      <li id="moveDown">Down</li>
+      <li id="changeColor">Change color</li>
+    </ul>
+  </div>
+  <div class="menu" id="docMenu">
+    <ul class="options">
+      <li id="addCharacter">Add character</li>
+      <li id="removeCharacter">Remuve character</li>
+    </ul>
+  </div>
+</body>
+</html>

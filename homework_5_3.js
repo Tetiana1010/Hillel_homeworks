@@ -16,7 +16,7 @@ function doMath (x, znak, y){
     case '%':
       return x & y;
     case '^':
-    return x ^ y;
+      return x ^ y;
   }
 }
 
