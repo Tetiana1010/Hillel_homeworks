@@ -1,38 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
     <script src="homework_16_1.js"></script>
     <style>
-        [class*="player-"] {
-            position: fixed;
-        }
+      body {
+        font-family: Arial;
+      }
 
-        .solid {
-            border: 2px solid black;
-        }
+      .products {
+        display: flex;
+      }
 
-        .products {
-            display: flex;
-        }
+      .product {
+        height: 200px;
+        width: 150px;
+        margin: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        border: 1px solid black;
+      }
 
-        .product {
-            height: 200px;
-            width: 120px;
-            border-radius: 20px;
-            margin: 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
+      .product__title {
+        text-align: center;
+        margin-top: 25px;
+      }
 
-        .product__title {
-            text-align: center;
-            margin-top: 25px;
-        }
+      .product__price {
+        text-align: center;
+        margin-bottom: 10px;
+      }
+
+      .product__image {
+        width: 100%;
+        height: 7em;
+      }
+
+      .product__action {
+        background-color: black;
+        color: white;
+        border: none;
+      }
+
+      :hover.product__action {
+        background-color: #343434;
+      }
+
+      .grey {
+        background-color: grey;
+      }
+
+      input {
+        width: 2em;
+        height: 1em;
+      }
+    </style>
+  </head>
+  <body>
+    <ul class="user-list"></ul>
+    <div class="products"></div>
+    <hr />
+    <div class="cart_amoun">
+      Total:
+      <span id="total">0</span>
+      <select id="currencyName">
+        <option value="₴">₴</option>
+        <option value="$">$</option>
+        <option value="€">€</option>
+      </select>
+      <button id="resetButton" style="margin-left: 16em">RESET</button>
+    </div>
+  </body>
+</html>
         .product__price {
             text-align: center;
             margin-bottom: 10px;
