@@ -1,107 +1,63 @@
-/*
-
-    К лекционной задаче применить следующие фичи:
-    Quantity by product
-    Добавить кнопку Clear all
-    Пользователь может уменьшить\увеличить количество элементов по типу в "корзине". 
-    Создать select(выпадающий список) конвертации валют. Список имеет 3 валюты - UAH, EUR, USD.
-    изначальная валюта - UAH
-    Курс применяется только к total
-    Курс валют захардкодить в код
-
-
-*/
-
 window.addEventListener('load', () => {
-  // let isFlag = true;
 
-  // document.body.innerHTML += `Test <button class="${isFlag ? 'active' : ''}" id="btn">Click me</button><hr>`;
-  // document.body.querySelector('#btn').addEventListener('click', event => {
-  //     console.log(event.target);
-  // });
-
-
-  // const textElem = document.createElement('span');
-
-  // textElem.innerHTML = 'Super text';
-  // textElem.classList.add('solid');
-  // textElem.addEventListener('click', () => {
-  //     console.log('span clicked')
-  // });
-  // console.log(textElem);
-
-  // document.body.appendChild(textElem);
-
-
-  // userList = [
-  //     "User 1",
-  //     "User 2",
-  //     "User 3",
-  //     "User 4",
-  //     "User 5",
-  // ];
-
-  // const activeClassName = 'active-user';
-
-  // es6 strings
-  // document.querySelector('.user-list').innerHTML = `${userList.map(item => `<li class="${activeClassName}">${item}</li>`).join('')}`
-
-
-  // createElement
-
-  // const userListCotainer = document.querySelector('.user-list');
-  // userList.forEach((usr, index) => {
-  //     const liItem = document.createElement('li');
-  //     liItem.classList.add(activeClassName);
-  //     liItem.innerHTML = usr;
-  //     liItem.addEventListener('click', event => {
-  //         userList.splice(index, 1);
-  //         event.target.remove();
-  //     })
-  //     userListCotainer.appendChild(liItem);
-  // });
   const products = [
-      {
-          id: "id-1",
-          name: 'Title 1',
-          price: '100',
-          image: 'https://images-na.ssl-images-amazon.com/images/I/616MVaXD29L._AC_SX679_.jpg'
-      },
-      {
-          id: "id-2",
-          name: 'Title 2',
-          price: '300',
-          image: 'https://images-na.ssl-images-amazon.com/images/I/616MVaXD29L._AC_SX679_.jpg'
-      },
-      {
-          id: "id-2",
-          price: '300',
-          image: 'https://images-na.ssl-images-amazon.com/images/I/616MVaXD29L._AC_SX679_.jpg'
-      }
+  {
+    id: "id-1",
+    name: 'Lipstick',
+    price: '1199',
+    image: 'https://www.dior.com/beauty/version-5.1610097138802/resize-image/ep/870/580/90/0/%252FY0172009%252FV007%252FY0172009_C017500999_E01_ZHC.jpg?imwidth=870',
+  },
+
+  {
+    id: "id-2",
+    name: 'Mascara',
+    price: `1499`,
+    image: 'https://www.dior.com/beauty/version-5.1595261547029/resize-image/ep/715/773/90/0/horizon%252Fcovers%252FY0697400_F069740090_E01_GHC.jpg?imwidth=800',
+  },
+
+  {
+    id: "id-2",
+    price: '1900',
+    image: 'https://www.dior.com/beauty/version-5.1610097138802/resize-image/ep/870/580/90/0/%252FY0205731%252FV001%252FY0205731_C020573100_E01_ZHC.jpg?imwidth=870',
+  }
   ];
-  let totalCost = 0;
+
+  let totalCost = 0; 
   
-  const productsContainer =  document.querySelector('.products');
+  const productsContainer =  document.querySelector('.products'); 
 
   productsContainer.innerHTML = `${products.map(item => {
-      let name = item.name;
-      if(!name) {
-          name = 'Default name';
-      }
-      return `
-      <div class="product solid">   
+
+
+    let name = item.name;
+
+        if(!name) {
+            name = 'Default name';
+        }
+        return `
+
+      <div class="product">  
           <div class="product__title ${item.name ? '' : 'grey'}">${name}</div>
           <img class="product__image" src="${item.image}">
           <div class="product__price">
-              <button class="product__action" data-product-id="${item.id}">Add</button>
-              <span>${item.price}</span>
-          </div>  
-      </div>
-  `;
+             <button class="product__action" data-product-id="${item.id}">Add</button>
+             <span>${item.price}</span>
+          </div>
+      </div> `;
+
+    
+
   }).join('')}`;
 
   const buttons = productsContainer.querySelectorAll('button.product__action');
   const totalContainer = document.querySelector('#total')
+
+  const selectCurrencyName = document.querySelector('#currencyName');
+  selectCurrencyName.addEventListener('change', (e) => {
+    const currency = e.target.value;
+    totalCost = convertTotal(totalCost, currency);
+    totalContainer.innerHTML = totalCost.toFixed(2);
+  });
 
   buttons.forEach(btn => {
       btn.addEventListener('click', onButtonAddClick)
@@ -109,11 +65,33 @@ window.addEventListener('load', () => {
 
   function onButtonAddClick(event) {
       const productId = event.target.dataset.productId;
-      const currentProduct = products.find(item => item.id == productId);
+      const currentProduct = products.find(function (item) {
+          return item.id == productId
+        });
 
-      totalCost += Number(currentProduct.price);
-      totalContainer.innerHTML = totalCost;
+      totalCost += Number(convertTotal(currentProduct.price, selectCurrencyName.value));
+      totalContainer.innerHTML = totalCost.toFixed(2);
   }
 
-  console.log(buttons);
+  function reset() {
+    totalCost = 0;
+    totalContainer.innerHTML = totalCost.toFixed(2);
+  }
+
+  const resetButton = document.querySelector('#resetButton')
+  resetButton.addEventListener('click', reset);
+
+  function convertTotal(total, currency) {
+      let rate = 1;
+      switch (currency) {
+        case "$":
+            rate = 28;
+            break;
+        case "€":
+            rate = 30;
+            break;
+      }
+      return (total / rate);
+  }
+  
 })
